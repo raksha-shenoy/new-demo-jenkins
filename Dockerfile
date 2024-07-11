@@ -1,8 +1,9 @@
 # Use an official Nginx runtime as a parent image 
-FROM nginx:latest 
+FROM python:3.9-slim
 # Copy custom configuration file from the current directory
-COPY nginx.conf /etc/nginx/nginx.conf 
+WORKDIR /NEW-DEMO-JENKINS
 # Expose port 80 to allow outside access to Nginx 
-EXPOSE 80 
+
 # Start Nginx when the container launches 
-CMD ["nginx", "-g", "daemon off;"]
+
+

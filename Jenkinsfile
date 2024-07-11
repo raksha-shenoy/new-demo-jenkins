@@ -4,16 +4,16 @@ pipeline {
     environment {
         // Define environment variables if needed
         DOCKERFILE_PATH = 'C:\\Users\\RakshaShenoy\\new-demo-jenkins\\Dockerfile' // Update this with your Dockerfile path
-        DOCKER_IMAGE_TAG = 'nginx:latest' // Update with your desired image name and tag
+        DOCKER_IMAGE_TAG = 'keer:latest' // Update with your desired image name and tag
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                // Checkout the code from Git
-                git 'https://github.com/raksha-shenoy/new-demo-jenkins.git'
-            }
-        }
+        // stage('Checkout') {
+        //     steps {
+        //         // Checkout the code from Git
+        //         git 'https://github.com/raksha-shenoy/new-demo-jenkins.git'
+        //     }
+        // }
         stage('Build Docker Image') {
             steps {
                 script {
