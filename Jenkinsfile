@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Define environment variables if needed
-        DOCKERFILE_PATH = 'C:\\Users\RakshaShenoy\\new-demo-jenkins\\Dockerfile' // Update this with your Dockerfile path
+        DOCKERFILE_PATH = 'C:\\Users\\RakshaShenoy\\new-demo-jenkins\\Dockerfile' // Update this with your Dockerfile path
         DOCKER_IMAGE_TAG = 'nginx:latest' // Update with your desired image name and tag
     }
 
