@@ -8,6 +8,12 @@ pipeline {
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the code from Git
+                git 'https://github.com/raksha-shenoy/new-demo-jenkins.git'
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 script {
@@ -16,6 +22,8 @@ pipeline {
                 }
             }
         }
+           
+       
 
         // Add more stages for testing, deployment, etc.
         // Example:
