@@ -22,30 +22,20 @@ pipeline {
                 }
             }
         }
+        stage('Scan Docker Image') {
+            steps {
+                script {
+                    // Run Trivy scan on the Docker image
+                    docker.image("${DOCKER_IMAGE_TAG}").run("--entrypoint='' --no-progress --format json | tee trivy_report.json")
+                    
+                    // Archive Trivy scan report as artifact
+                    archiveArtifacts artifacts: 'trivy_report.json', allowEmptyArchive: true
+                }
+            }
+        }
+    }
+}
            
        
 
-        // Add more stages for testing, deployment, etc.
-        // Example:
-        // stage('Test') {
-        //     steps {
-        //         sh 'echo "Run tests"'
-        //     }
-        // }
-
-        // stage('Deploy') {
-        //     steps {
-        //         sh 'echo "Deploy your application"'
-        //     }
-        // }
-    }
-
-    // post {
-    //     success {
-    //         echo 'Docker image build and pipeline succeeded!'
-    //     }
-    //     failure {
-    //         echo 'Pipeline failed!'
-    //     }
-    // }
-}
+       
