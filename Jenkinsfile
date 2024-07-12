@@ -22,17 +22,20 @@ pipeline {
                 }
             }
         }
-        stage('Scan Docker Image') {
-            steps {
-                script {
-                    // Run Trivy scan on the Docker image
-                    docker.image("${DOCKER_IMAGE_TAG}").run("--entrypoint='' --no-progress --format json | tee trivy_report.json")
-                    
-                    // Archive Trivy scan report as artifact
-                    archiveArtifacts artifacts: 'trivy_report.json', allowEmptyArchive: true
-                }
-            }
+       stage('Scan Docker Image') {
+    steps {
+        script {
+            def scanOutput = docker.image("${DOCKER_IMAGE_TAG}").run("--entrypoint='' --no-progress --format json")
+            
+            // Save scan output to a file
+            writeFile file: 'trivy_report.json', text: scanOutput
+            
+            // Archive Trivy scan report as artifact
+            archiveArtifacts artifacts: 'trivy_report.json', allowEmptyArchive: true
         }
+    }
+}
+
     }
 }
            
