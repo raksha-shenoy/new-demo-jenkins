@@ -5,6 +5,8 @@ pipeline {
         // Define environment variables if needed
         DOCKERFILE_PATH = 'C:\\Users\\RakshaShenoy\\new-demo-jenkins\\Dockerfile' // Update this with your Dockerfile path
         DOCKER_IMAGE_TAG = 'keer:latest' // Update with your desired image name and tag
+        SONAR_PROJECT_KEY = 'new-demo-jenkins'
+        SONAR_AUTH_TOKEN = credentials('squ_1b73eb70b78e5c0bc381db6b3d9e46852b6ae5db')
     }
 
     stages {
@@ -22,21 +24,18 @@ pipeline {
                 }
             }
         }
-        stage('Run Trivy Scan') {
+        stage('SonarQube Scan') {
             steps {
-                script {
-                    def trivyReport = docker.image("${DOCKER_IMAGE_TAG}").inside("--entrypoint='' --no-progress --format json") { c ->
-                        def output = c.sh(script: 'trivy <your_image_name_or_id>', returnStdout: true).trim()
-                        writeFile file: 'trivy_report.json', text: output
-                        return output
-                    }
+                withSonarQubeEnv('SonarQube Server') {
+                    // Run SonarQube Scanner
+                    sh '''
+                        mvn sonar:sonar \
+                            -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+                            -Dsonar.host.url=http://sonarqube_server_url:9090 \
+                            -Dsonar.login=${SONAR_AUTH_TOKEN}
+                    '''
 
-                    // Archive Trivy scan report as artifact
-                    archiveArtifacts artifacts: 'trivy_report.json', allowEmptyArchive: true
-
-                    // Optionally, you can print the Trivy scan report
-                    echo "Trivy Scan Report:"
-                    echo trivyReport
+                  
                 }
             }
         }
