@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         SCANNER_HOME = tool 'sonar'
-        SONARQUBE_SERVER = credentials('SONAR_AUTH_TOKEN')
+        // SONARQUBE_SERVER = credentials('SONAR_AUTH_TOKEN')
     //     // Define environment variables if needed
         DOCKERFILE_PATH = 'C:\\Users\\RakshaShenoy\\new-demo-jenkins\\Dockerfile' // Update this with your Dockerfile path
         DOCKER_IMAGE_TAG = 'keer:latest' // Update with your desired image name and tag
