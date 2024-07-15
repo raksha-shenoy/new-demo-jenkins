@@ -36,17 +36,23 @@ pipeline {
                 }
             }
         }
-        
-        stage('Push Docker Image') {
-            steps {
-                script {
-                    // Build Docker image using Docker Pipeline plugin
-                    docker.withRegistry( '', registryCredential) { 
-                    dockerImage.push()
-                }
-            }
+
+        stage('Push image') {
+        withDockerRegistry([ credentialsId: "DOCKER_CREDENTIAL", url: "" ]) {
+        bat "docker push rakshashenoy/keer:latest"
         }
-    }  
+        
+    //     stage('Push Docker Image') {
+    //         steps {
+    //             script {
+    //                 // Build Docker image using Docker Pipeline plugin
+    //                 docker.withRegistry( '', registryCredential) { 
+    //                 dockerImage.push()
+                    
+    //             }
+    //         }
+    //     }
+    // }  
         
     }
 }
