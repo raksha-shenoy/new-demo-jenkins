@@ -8,7 +8,7 @@ pipeline {
         DOCKER_IMAGE_TAG = 'keer:latest' // Update with your desired image name and tag
     //     SONAR_PROJECT_KEY = 'new-demo-jenkins'
     //     SONAR_AUTH_TOKEN = 'squ_1b73eb70b78e5c0bc381db6b3d9e46852b6ae5db'
-    // }
+    }
 
     stages {
         // stage('Checkout') {
@@ -30,7 +30,7 @@ pipeline {
              withSonarQubeEnv('sonar') {
     
 }
-                    sh ''' $SCANNER_HOME/bin/sonar-scanner \
+                    bat ''' $SCANNER_HOME/bin/sonar-scanner \
                             -Dsonar.projectKey=new-demo-jenkins \
                             -Dsonar.projectName=new-demo-jenkins \
                     '''
