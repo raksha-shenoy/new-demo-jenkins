@@ -32,7 +32,7 @@ pipeline {
                     withSonarQubeEnv('sonar') {
                           bat ''' "${SCANNER_HOME}/bin/sonar-scanner" \
                                   -Dsonar.projectKey=new-demo-jenkins \
-//                                -Dsonar.projectName=new-demo-jenkins \
+                                  -Dsonar.projectName=new-demo-jenkins \
                                '''
 
                     }
