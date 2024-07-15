@@ -8,7 +8,7 @@ pipeline {
         DOCKERFILE_PATH = 'C:\\Users\\RakshaShenoy\\new-demo-jenkins\\Dockerfile' // Update this with your Dockerfile path
         DOCKER_IMAGE_TAG = 'keer:latest' // Update with your desired image name and tag
         SONAR_PROJECT_KEY = 'new-demo-jenkins'
-        registry = 'rakshashenoy/keer'
+        registry = 'rakshashenoy/samplerepo'
         registryCredential = 'DOCKER_CREDENTIAL'
       
     }
