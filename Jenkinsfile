@@ -8,7 +8,7 @@ pipeline {
         DOCKERFILE_PATH = 'C:\\Users\\RakshaShenoy\\new-demo-jenkins\\Dockerfile' // Update this with your Dockerfile path
         DOCKER_IMAGE_TAG = 'keer:latest' // Update with your desired image name and tag
         SONAR_PROJECT_KEY = 'new-demo-jenkins'
-        registry = 'rakshashenoy/samplerepo'
+        registry = 'rakshashenoy/keer'
         registryCredential = 'DOCKER_CREDENTIAL'
       
     }
@@ -37,20 +37,20 @@ pipeline {
             }
         }
 
-        stage('Push image') {
-        withDockerRegistry([ credentialsId: "DOCKER_CREDENTIAL", url: "" ]) {
-        bat "docker push rakshashenoy/keer:latest"
+        // stage('Push image') {
+        //     withDockerRegistry([ credentialsId: "DOCKER_CREDENTIAL", url: "" ]) {
+        //         bat "docker push rakshashenoy/keer:latest"
         }
         
-    //     stage('Push Docker Image') {
-    //         steps {
-    //             script {
-    //                 // Build Docker image using Docker Pipeline plugin
-    //                 docker.withRegistry( '', registryCredential) { 
-    //                 dockerImage.push()
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    // Build Docker image using Docker Pipeline plugin
+                    docker.withRegistry( '', registryCredential) { 
+                    dockerImage.push()
                     
-    //             }
-    //         }
+                }
+            }
     //     }
     // }  
         
