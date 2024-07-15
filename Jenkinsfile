@@ -32,7 +32,7 @@ pipeline {
                 script{
                     def props = readProperties file: 'sonar-project.properties'
                     withSonarQubeEnv('sonar') {
-                        bat "${SCANNER_HOME}/bin/sonar-scanner" -Dsonar.projectKey=${props['sonar.projectKey']}
+                        bat "${SCANNER_HOME}/bin/sonar-scanner -Dsonar.projectKey=${props['sonar.projectKey']}"
 
                     }
                 }
