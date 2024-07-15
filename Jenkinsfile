@@ -30,7 +30,7 @@ pipeline {
              withSonarQubeEnv('sonar') {
     
 }
-                    bat ''' $SCANNER_HOME/bin/sonar-scanner \
+                    bat ''' $SCANNER_HOME/C:\\Users\\RakshaShenoy\\sonarqube-10.2.1.78527\\sonarqube-10.2.1.78527\\bin\\windows-x86-64\\sonar \
                             -Dsonar.projectKey=new-demo-jenkins \
                             -Dsonar.projectName=new-demo-jenkins \
                     '''
