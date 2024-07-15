@@ -14,14 +14,6 @@ pipeline {
     }
 
     stages {
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    // Build Docker image using Docker Pipeline plugin
-                    dockerImage = docker.build("${DOCKER_IMAGE_TAG}", "-f ${DOCKERFILE_PATH} .")
-                }
-            }
-        }
         stage('SonarQube Scan') {
             steps {
                 script{
@@ -33,6 +25,17 @@ pipeline {
                 }
             }
         }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Build Docker image using Docker Pipeline plugin
+                    dockerImage = docker.build("${DOCKER_IMAGE_TAG}", "-f ${DOCKERFILE_PATH} .")
+                    docker tag dockerImage docker.io/rakshashenoy/keer:latest
+
+                }
+            }
+        }
+        
         stage('Push Docker Image') {
             steps {
                 script {
