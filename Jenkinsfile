@@ -7,7 +7,8 @@ pipeline {
     //     // Define environment variables if needed
         DOCKERFILE_PATH = 'C:\\Users\\RakshaShenoy\\new-demo-jenkins\\Dockerfile' // Update this with your Dockerfile path
         DOCKER_IMAGE_TAG = 'keer:latest' // Update with your desired image name and tag
-        SONAR_PROP = 'C:\\Users\\RakshaShenoy\\new-demo-jenkins\\sonar-project.properties'
+        SONAR_PROJECT_KEY = 'new-demo-jenkins'
+        // SONAR_PROP = 'C:\\Users\\RakshaShenoy\\new-demo-jenkins\\sonar-project.properties'
     //     SONAR_PROJECT_KEY = 'new-demo-jenkins'
     //     SONAR_AUTH_TOKEN = 'squ_1b73eb70b78e5c0bc381db6b3d9e46852b6ae5db'
     }
@@ -31,9 +32,9 @@ pipeline {
         stage('SonarQube Scan') {
             steps {
                 script{
-                    def props = readProperties file: 'sonar-project.properties'
+                    // def props = readProperties file: 'sonar-project.properties'
                     withSonarQubeEnv('sonar') {
-                        bat "${SCANNER_HOME}/bin/sonar-scanner -Dsonar.projectKey=${SONAR_PROP}"
+                        bat "${SCANNER_HOME}/bin/sonar-scanner -Dsonar.projectKey=${SONAR_PROJECT_KEY}" 
 
                     }
                 }
