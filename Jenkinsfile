@@ -37,10 +37,8 @@ pipeline {
             }
         }
 
-        // stage('Push image') {
-        //     withDockerRegistry([ credentialsId: "DOCKER_CREDENTIAL", url: "" ]) {
-        //         bat "docker push rakshashenoy/keer:latest"
-        }
+       
+        
         
         stage('Push Docker Image') {
             steps {
@@ -51,9 +49,9 @@ pipeline {
                     
                 }
             }
-    //     }
-    // }  
+   
         
     }
-}
+        }
+    }
 }
