@@ -31,7 +31,7 @@ pipeline {
             steps {
                 script{
                     withSonarQubeEnv('sonar') {
-                               bat "C:\\Users\\RakshaShenoy\\sonarqube-10.2.1.78527\\sonarqube-10.2.1.78527\\lib\\scanner -Dsonar.projectKey=new-demo-jenkins -Dsonar.sources=." 
+                               bat "$(SCANNER_HOME)/bin/sonar-scanner"
 
                     }
                 }
