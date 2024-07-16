@@ -40,18 +40,29 @@ pipeline {
        
         
         
-        stage('Push Docker Image') {
-            steps {
-                script {
-                    // Build Docker image using Docker Pipeline plugin
-                    docker.withRegistry( '', registryCredential) { 
-                    dockerImage.push()
+    //     stage('Push Docker Image') {
+    //         steps {
+    //             script {
+    //                 // Build Docker image using Docker Pipeline plugin
+    //                 // docker.withRegistry( '', registryCredential) { 
+    //                 // dockerImage.push()
                     
-                }
-            }
+    //                 def imageName = "keer:latest"
+    //                 def registryImage = "docker.io/rakshashenoy/keer:latest// Build the Docker image
+    //                 bat "docker build -t ${imageName} Dockerfile"
+ 
+    //                 // Tag the Docker image
+    //                 bat "docker tag ${imageName} ${registryImage}"
+ 
+    //                 // Push the Docker image to the registry
+    //                 withDockerRegistry(credentialsId: 'a5606cb4-2093-43c5-9d06-c222d19bbfb6', toolName: 'docker') {
+    //                     bat "docker push ${registryImage}"
+    //             }
+            
    
         
-    }
+    // }
         }
     }
-}
+
+                
