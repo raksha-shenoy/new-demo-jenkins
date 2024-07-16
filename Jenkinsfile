@@ -46,7 +46,7 @@ pipeline {
                     //     docker.withRegistry("${DOCKER_REGISTRY}", 'docker') {
                     //         // Push Docker image
                     //         docker.image("${DOCKER_IMAGE_TAG}").push()
-                            docker.withRegistry("${registry}", registryCredential) {
+                            docker.withRegistry("${registry}", "${registryCredential}") {
                             dockerImage.push("${DOCKER_IMAGE_TAG}")
                         }
                     }
