@@ -45,7 +45,8 @@ pipeline {
                     docker.withRegistry( 'https://docker.io', registryCredential) { 
                     // dockerImage.push()
                     // bat "docker push rakshashenoy/keer:tagname"
-                    bat "docker push ${dockerImage}"
+                    // bat "docker push ${dockerImage}"
+                    docker.image("${DOCKER_IMAGE_TAG}").push()
                     }
                 }
             }
