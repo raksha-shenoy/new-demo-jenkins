@@ -44,7 +44,8 @@ pipeline {
                     // Build Docker image using Docker Pipeline plugin
                     docker.withRegistry( 'https://docker.io', registryCredential) { 
                     // dockerImage.push()
-                    bat "docker push rakshashenoy/keer:tagname"
+                    // bat "docker push rakshashenoy/keer:tagname"
+                    bat "docker push ${dockerImage}"
                     }
                 }
             }
