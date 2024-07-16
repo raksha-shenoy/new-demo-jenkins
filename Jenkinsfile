@@ -33,7 +33,7 @@ pipeline {
                 script {
                     // Build Docker image using Docker Pipeline plugin
                     // dockerImage = docker.build("${DOCKER_IMAGE_TAG}", "-f ${DOCKERFILE_PATH} .")
-                    bat "docker build -t ${DOCKER_IMAGE_NAME} Dockerfile"
+                    bat "docker build -t ${DOCKER_IMAGE_NAME} Dockerfile ."
                     bat "docker images"
                     //docker.tag dockerImage:latest docker.io/rakshashenoy/keer:latest
                     // docker.tag(dockerImage, 'rakshashenoy/samplerepo/keer:latest')
