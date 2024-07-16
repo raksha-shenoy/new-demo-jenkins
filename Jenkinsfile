@@ -7,9 +7,9 @@ pipeline {
         
         DOCKERFILE_PATH = 'C:\\Users\\RakshaShenoy\\new-demo-jenkins\\Dockerfile' // Update this with your Dockerfile path
         // DOCKER_IMAGE_TAG = 'keer:latest' // Update with your desired image name and tag
-        DOCKER_IMAGE_NAME = 'keer:v1'
+        DOCKER_IMAGE_NAME = 'keer'
         // DOCKER_IMAGE_TAG = 'latest'
-        REGISTRY_IMAGE = 'docker.io/rakshashenoy/keer:v1'
+        REGISTRY_IMAGE = 'docker.io/rakshashenoy/keer'
         SONAR_PROJECT_KEY = 'new-demo-jenkins'
         DOCKER_REGISTRY = 'https://hub.docker.com/r/rakshashenoy/keer'
         registryCredential = 'DOCKER_CREDENTIAL'
@@ -48,7 +48,7 @@ pipeline {
                     // Build Docker image using Docker Pipeline plugin
                     docker.withRegistry( 'https://docker.io', registryCredential) { 
                      // Tag the Docker image
-                    bat "docker tag ${DOCKER_IMAGE_NAME}:${BUILD_NUMBER}"
+                    bat "docker tag ${DOCKER_IMAGE_NAME}:${BUILD_NUMBER} ${REGISTRY_IMAGE}"
                     // dockerImage.push()
                     // bat "docker push rakshashenoy/keer:tagname"
                     // bat "docker push ${dockerImage}"
