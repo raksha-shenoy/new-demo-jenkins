@@ -42,7 +42,7 @@ pipeline {
             steps {
                 script {
                     // Build Docker image using Docker Pipeline plugin
-                    docker.withRegistry( '', registryCredential) { 
+                    docker.withRegistry( 'https://docker.io', registryCredential) { 
                     dockerImage.push()
                     }
                 }
