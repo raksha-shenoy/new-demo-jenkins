@@ -8,8 +8,8 @@ pipeline {
         DOCKERFILE_PATH = 'C:\\Users\\RakshaShenoy\\new-demo-jenkins\\Dockerfile' // Update this with your Dockerfile path
         DOCKER_IMAGE_TAG = 'keer:latest' // Update with your desired image name and tag
         SONAR_PROJECT_KEY = 'new-demo-jenkins'
-        registry = 'rakshashenoy'
-        registryCredential = 'DOCKER_CREDENTIAL'
+        DOCKER_REGISTRY = 'rakshashenoy'
+        REGISTRY_CREDENTIAL = 'DOCKER_CREDENTIAL'
       
     }
 
@@ -41,13 +41,9 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    // Authenticate with Docker registry
-                    // withCredentials([usernamePassword(credentialsId: DOCKER_CREDENTIALS, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                    //     docker.withRegistry("${DOCKER_REGISTRY}", 'docker') {
-                    //         // Push Docker image
-                    //         docker.image("${DOCKER_IMAGE_TAG}").push()
-                            docker.withRegistry("${registry}", "${registryCredential}") {
-                            dockerImage.push("${DOCKER_IMAGE_TAG}")
+                    // Push Docker image to registry
+                    docker.withRegistry("${DOCKER_REGISTRY}", REGISTRY_CREDENTIAL) {
+                        dockerImage.push("${DOCKER_IMAGE_TAG}")
                         }
                     }
         
