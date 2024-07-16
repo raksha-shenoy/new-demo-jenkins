@@ -9,7 +9,7 @@ pipeline {
         DOCKER_IMAGE_TAG = 'keer:latest' // Update with your desired image name and tag
         SONAR_PROJECT_KEY = 'new-demo-jenkins'
         DOCKER_REGISTRY = 'https://hub.docker.com/r/rakshashenoy/keer'
-        REGISTRY_CREDENTIAL = 'DOCKER_CREDENTIAL'
+        registryCredential = 'DOCKER_CREDENTIAL'
       
     }
 
@@ -41,11 +41,21 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    // Push Docker image to registry
-                           docker.withRegistry("${DOCKER_REGISTRY}", REGISTRY_CREDENTIAL) {
-                              dockerImage.push("${DOCKER_IMAGE_TAG}")
-                        }
+                    // Build Docker image using Docker Pipeline plugin
+                    docker.withRegistry( '', registryCredential) { 
+                    dockerImage.push()
                     }
+                }
+            }
+        }
+        // stage('Push Docker Image') {
+        //     steps {
+        //         script {
+        //             // Push Docker image to registry
+        //                    docker.withRegistry("${DOCKER_REGISTRY}", REGISTRY_CREDENTIAL) {
+        //                       dockerImage.push("${DOCKER_IMAGE_TAG}")
+        //                 }
+        //             }
         
         
         // stage('Push Docker Image') {
@@ -71,8 +81,8 @@ pipeline {
         
     }
         }
-    }
-}
+    
+
         
     
 
