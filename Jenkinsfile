@@ -48,7 +48,7 @@ pipeline {
                     // Build Docker image using Docker Pipeline plugin
                     docker.withRegistry( 'https://docker.io', registryCredential) { 
                      // Tag the Docker image
-                    bat "docker tag ${DOCKER_IMAGE_NAME} ${REGISTRY_IMAGE} :${BUILD_NUMBER}"
+                    bat "docker tag ${DOCKER_IMAGE_NAME}:${BUILD_NUMBER}"
                     // dockerImage.push()
                     // bat "docker push rakshashenoy/keer:tagname"
                     // bat "docker push ${dockerImage}"
