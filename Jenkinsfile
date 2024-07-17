@@ -11,7 +11,7 @@ pipeline {
         // DOCKER_IMAGE_TAG = 'latest'
         REGISTRY_IMAGE = "docker.io/rakshashenoy/keer:${BUILD_NUMBER}"
         SONAR_PROJECT_KEY = 'new-demo-jenkins'
-        DOCKER_REGISTRY = 'https://hub.docker.com/r/rakshashenoy/keer'
+        // DOCKER_REGISTRY = 'https://hub.docker.com/r/rakshashenoy/keer'
         registryCredential = 'DOCKER_CREDENTIAL'
       
     }
