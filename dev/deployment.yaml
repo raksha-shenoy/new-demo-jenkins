@@ -16,4 +16,4 @@ spec:
       - name: new-demo-jenkins
         image: rakshashenoy/keer:80
         ports:
-        - containerPort: 5000
+        - containerPort: 80
