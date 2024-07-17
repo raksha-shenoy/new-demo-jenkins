@@ -34,7 +34,7 @@ spec:
   source:
     repoURL: https://github.com/raksha-shenoy/new-demo-jenkins.git  # Replace with your GitHub repo URL
     targetRevision: HEAD
-    path: /
+    path: dev
     helm:
       valueFiles:
         - deployment.yaml
