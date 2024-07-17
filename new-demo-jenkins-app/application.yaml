@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: new-demo-jenkins-argo-application
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/raksha-shenoy/new-demo-jenkins.git
+    targetRevision: main
+    path: new-demo-jenkins-app\dev
+  destination: 
+    server: https://kubernetes.default.svc
+    namespace: new-demo-jenkins
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+
+    automated:
+      selfHeal: true
+      prune: true
+

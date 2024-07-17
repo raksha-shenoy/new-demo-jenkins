@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: new-demo-jenkins
+spec:
+  selector:
+    matchLabels:
+      app: new-demo-jenkins
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: new-demo-jenkins
+    spec:
+      containers:
+      - name: new-demo-jenkins
+        image: rakshashenoy/keer:80
+        ports:
+        - containerPort: 9000
