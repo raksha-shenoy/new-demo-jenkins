@@ -1,12 +1,26 @@
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: new-demo-jenkins-service
+# spec:
+#   selector:
+#     app: new-demo-jenkins
+#   ports:
+#   - port: 80
+#     protocol: TCP
+#     targetPort: 80
+#   type: ClusterIP
+
+
 apiVersion: v1
 kind: Service
 metadata:
-  name: new-demo-jenkins-service
+  name: python-app-service
 spec:
   selector:
-    app: new-demo-jenkins
+    app: python-app  # Selects Pods with label app=python-app
   ports:
-  - port: 80
-    protocol: TCP
-    targetPort: 80
-  type: ClusterIP
+    - protocol: TCP
+      port: 80  # Port exposed by the service
+      targetPort: 80  # Port on the container the service forwards to
+  type: ClusterIP  # Expose internally within the cluster

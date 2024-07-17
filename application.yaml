@@ -1,24 +1,45 @@
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: new-demo-jenkins-argo-application
+#   namespace: argocd
+# spec:
+#   project: default
+
+#   source:
+#     repoURL: https://github.com/raksha-shenoy/new-demo-jenkins.git
+#     targetRevision: HEAD
+#     path: dev
+#   destination: 
+#     server: https://kubernetes.default.svc
+#     namespace: new-demo-jenkins
+
+#   syncPolicy:
+#     syncOptions:
+#     - CreateNamespace=true
+
+#     automated:
+#       selfHeal: true
+#       prune: true
+
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: new-demo-jenkins-argo-application
-  namespace: argocd
+  name: python-app
 spec:
-  project: default
-
+  destination:
+    server: https://kubernetes.default.svc  # Replace with your Kubernetes API server URL
+    namespace: default  # Replace with your desired namespace
+  project: default  # Replace with your Argo CD project name
   source:
-    repoURL: https://github.com/raksha-shenoy/new-demo-jenkins.git
+    repoURL: https://github.com/raksha-shenoy/new-demo-jenkins.git  # Replace with your GitHub repo URL
     targetRevision: HEAD
-    path: dev
-  destination: 
-    server: https://kubernetes.default.svc
-    namespace: new-demo-jenkins
-
+    path: /
+    helm:
+      valueFiles:
+        - deployment.yaml
+        - service.yaml
   syncPolicy:
-    syncOptions:
-    - CreateNamespace=true
-
     automated:
-      selfHeal: true
       prune: true
-
+      selfHeal: true
