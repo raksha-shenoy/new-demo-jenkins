@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/raksha-shenoy/new-demo-jenkins.git
     targetRevision: HEAD
-    path: /
+    path: dev
   destination: 
     server: https://kubernetes.default.svc
     namespace: new-demo-jenkins
