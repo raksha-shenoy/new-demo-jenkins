@@ -76,7 +76,7 @@ pipeline {
         stage('Deploy to ArgoCD') {
             steps {
                 script {
-                    withArgoCDCredentials {
+                    withArgoCDEnv {
                         // Inside this block, ARGOC_USERNAME and ARGO_PASSWORD are securely set
                         bat "argocd login --username $ARGO_ADMIN --password $ARGO_PASS $ARGOSERVER"
                             
