@@ -1,22 +1,22 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: new-demo-jenkins
-spec:
-  selector:
-    matchLabels:
-      app: new-demo-jenkins
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: new-demo-jenkins
-    spec:
-      containers:
-      - name: new-demo-jenkins
-        image: rakshashenoy/keer:94
-        ports:
-        - containerPort: 9001
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: new-demo-jenkins
+# spec:
+#   selector:
+#     matchLabels:
+#       app: new-demo-jenkins
+#   replicas: 1
+#   template:
+#     metadata:
+#       labels:
+#         app: new-demo-jenkins
+#     spec:
+#       containers:
+#       - name: new-demo-jenkins
+#         image: rakshashenoy/keer:94
+#         ports:
+#         - containerPort: 9001
 
 
 # apiVersion: apps/v1
@@ -38,3 +38,38 @@ spec:
 #         image: rakshashenoy/keer:82  # Replace with your Docker image name
 #         ports:
 #         - containerPort: 80  # Port your application listens on
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: new-demo-jenkins
+spec:
+  selector:
+    matchLabels:
+      app: new-demo-jenkins
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: new-demo-jenkins
+    spec:
+      containers:
+      - name: new-demo-jenkins
+        image: rakshashenoy/keer:94
+        ports:
+        - containerPort: 9001
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 9001
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 1  # Timeout for readiness probe
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9001
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          timeoutSeconds: 1  # Timeout for liveness probe
