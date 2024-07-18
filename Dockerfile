@@ -19,5 +19,7 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY . /app
 
+EXPOSE 8080
+
 # Run script.py when the container launches
 CMD ["python", "./script.py"]

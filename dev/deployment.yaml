@@ -1,40 +1,40 @@
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: new-demo-jenkins
-# spec:
-#   selector:
-#     matchLabels:
-#       app: new-demo-jenkins
-#   replicas: 2
-#   template:
-#     metadata:
-#       labels:
-#         app: new-demo-jenkins
-#     spec:
-#       containers:
-#       - name: new-demo-jenkins
-#         image: rakshashenoy/keer:81
-#         ports:
-#         - containerPort: 80
-
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: python-app-deployment
+  name: new-demo-jenkins
 spec:
-  replicas: 3  # Number of replicas (adjust as needed)
   selector:
     matchLabels:
-      app: python-app
+      app: new-demo-jenkins
+  replicas: 2
   template:
     metadata:
       labels:
-        app: python-app
+        app: new-demo-jenkins
     spec:
       containers:
-      - name: python-app
-        image: rakshashenoy/keer:82  # Replace with your Docker image name
+      - name: new-demo-jenkins
+        image: rakshashenoy/keer:81
         ports:
-        - containerPort: 80  # Port your application listens on
+        - containerPort: 8080
+
+
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: python-app-deployment
+# spec:
+#   replicas: 3  # Number of replicas (adjust as needed)
+#   selector:
+#     matchLabels:
+#       app: python-app
+#   template:
+#     metadata:
+#       labels:
+#         app: python-app
+#     spec:
+#       containers:
+#       - name: python-app
+#         image: rakshashenoy/keer:82  # Replace with your Docker image name
+#         ports:
+#         - containerPort: 80  # Port your application listens on
