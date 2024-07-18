@@ -13,8 +13,8 @@ pipeline {
         SONAR_PROJECT_KEY = 'new-demo-jenkins'
         // DOCKER_REGISTRY = 'https://hub.docker.com/r/rakshashenoy/keer'
         registryCredential = 'DOCKER_CREDENTIAL'
-        ARGO_ADMIN = 'ARGO_ADMIN'
-        ARGO_PASS = "ARGO_PASS"
+        ARGO_ADMIN = credentials('argo-cred').username
+        ARGO_PASS = credentials('argo-cred').password
         ARGOSERVER = "http://localhost:9000"
       
     }
@@ -76,10 +76,10 @@ pipeline {
         stage('Deploy to ArgoCD') {
             steps {
                 script {
-                    withArgoCDEnv {
+                    
                         // Inside this block, ARGOC_USERNAME and ARGO_PASSWORD are securely set
                         bat "argocd login --username $ARGO_ADMIN --password $ARGO_PASS $ARGOSERVER"
-                            
+                         
                         bat "argocd app sync new-demo-jenkins"
                         
                     }
