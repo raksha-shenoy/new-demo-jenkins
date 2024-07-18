@@ -13,6 +13,9 @@ pipeline {
         SONAR_PROJECT_KEY = 'new-demo-jenkins'
         // DOCKER_REGISTRY = 'https://hub.docker.com/r/rakshashenoy/keer'
         registryCredential = 'DOCKER_CREDENTIAL'
+        ARGO_ADMIN = 'ARGO_ADMIN'
+        ARGO_PASS = "ARGO_PASS"
+        ARGOSERVER = "http://localhost:9000"
       
     }
 
@@ -57,6 +60,33 @@ pipeline {
                 }
             }
         }
+
+        // stage('Deploy to ArgoCD') {
+        //     steps {
+        //         script {
+        //             // Example: Deploy to ArgoCD using ArgoCD CLI
+        //             sh '''
+        //                 argocd login --username admin --password <password> <argocd-server-url>
+        //                 argocd app create myapp --repo https://github.com/example/myapp.git --path . --dest-namespace default --dest-server https://kubernetes.default.svc --sync-policy auto
+        //                 argocd app sync myapp
+        //             '''
+        //         }
+        //     }
+        // }
+        stage('Deploy to ArgoCD') {
+            steps {
+                script {
+                    withArgoCDCredentials {
+                        // Inside this block, ARGOC_USERNAME and ARGO_PASSWORD are securely set
+                        bat "argocd login --username $ARGO_ADMIN --password $ARGO_PASS $ARGOSERVER"
+                            
+                        bat "argocd app sync new-demo-jenkins"
+                        
+                    }
+                }
+            }
+        }
+    }
         // stage('Push Docker Image') {
         //     steps {
         //         script {
@@ -89,7 +119,7 @@ pipeline {
    
         
     }
-        }
+        
     
 
         
