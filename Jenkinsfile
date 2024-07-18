@@ -73,18 +73,18 @@ pipeline {
         //         }
         //     }
         // }
-        stage('Deploy to ArgoCD') {
-            steps {
-                script {
+        // stage('Deploy to ArgoCD') {
+        //     steps {
+        //         script {
                     
-                        // Inside this block, ARGOC_USERNAME and ARGO_PASSWORD are securely set
-                        bat "argocd login --username $ARGO_ADMIN --password $ARGO_PASS $ARGOSERVER"
+        //                 // Inside this block, ARGOC_USERNAME and ARGO_PASSWORD are securely set
+        //                 bat "argocd login --username $ARGO_ADMIN --password $ARGO_PASS $ARGOSERVER"
                          
-                        bat "argocd app sync new-demo-jenkins"
+        //                 bat "argocd app sync new-demo-jenkins"
                         
-                    }
-                }
-            }
+        //             }
+        //         }
+        //     }
         }
     }
         // stage('Push Docker Image') {
