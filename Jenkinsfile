@@ -13,8 +13,8 @@ pipeline {
         SONAR_PROJECT_KEY = 'new-demo-jenkins'
         // DOCKER_REGISTRY = 'https://hub.docker.com/r/rakshashenoy/keer'
         registryCredential = 'DOCKER_CREDENTIAL'
-        ARGO_ADMIN = credentials('argo-cred').username
-        ARGO_PASS = credentials('argo-cred').password
+        ARGO_ADMIN = "credentials('argo-cred').username"
+        ARGO_PASS = "credentials('argo-cred').password"
         ARGOSERVER = "http://localhost:9000"
       
     }
